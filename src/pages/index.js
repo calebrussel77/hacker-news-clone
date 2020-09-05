@@ -1,27 +1,24 @@
 import axiosInstance from "../utils/axiosInstance";
 import Error from "next/error";
-import React from "react";
-import { useRouter } from "next/router";
 import StoryList from "../components/StoryList/StoryList";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
+import NProgress from "nprogress";
 import Router from "next/router";
+
+Router.onRouteChangeStart = () => NProgress.start();
+Router.onRouteChangeComplete = () => NProgress.done();
+
+Router.onRouteChangeError = () => NProgress.done();
 
 export default function Home({ stories, page }) {
   if (!stories.length) {
     return <Error statusCode={504} />;
   }
-  const router = useRouter();
-
-  if (router.isFallback) {
-    return (
-      <div className="text-center mt-32 font-bold text-3xl">is Loading...</div>
-    );
-  }
 
   return (
     <Layout
-      title="New Links | Hacker Next"
+      title="Hacker News Clone | New Links "
       description="a hacker news clone made with made next js "
     >
       <StoryList stories={stories} />

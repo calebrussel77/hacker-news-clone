@@ -9,10 +9,12 @@ const Story = ({ story }) => {
     return <Error statusCode={503} />;
   }
   return (
-    <Layout title={`Hacker Next | ${story.title}`} backButton={true}>
+    <Layout title={`Hacker News Clone | ${story.title}`}>
       <main className="w-full px-6 bg-gray-200 pt-2 pb-1">
         <h1 className="text-5xl font-bold text-gray-900 my-4 hover:underline">
-          <a href={story.url}>{story.title}</a>
+          <a href={story.url} target="_blank">
+            {story.title}
+          </a>
         </h1>
         <div className="inline-flex space-x-3 items-center mb-3">
           <strong>{story.points} points </strong>
