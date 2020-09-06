@@ -13,7 +13,7 @@ const Layout = ({ children, title, description }) => {
         <meta name="description" content={description} />
         <title>{title}</title>
       </Head>
-      <div className="pt-8 container mx-auto">
+      <div className="pt-6 container mx-auto">
         <nav className="px-6 bg-orange-700 w-full py-3">
           <Link href="/">
             <a className="uppercase font-bold text-2xl leading-tight py-10 text-gray-900">

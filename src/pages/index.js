@@ -5,6 +5,7 @@ import Layout from "../components/Layout/Layout";
 import Link from "next/link";
 import NProgress from "nprogress";
 import Router from "next/router";
+import { useEffect } from "react";
 
 Router.onRouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
@@ -12,6 +13,19 @@ Router.onRouteChangeComplete = () => NProgress.done();
 Router.onRouteChangeError = () => NProgress.done();
 
 export default function Home({ stories, page }) {
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker
+        .register("/service-worker.js")
+        .then((registration) => {
+          console.log("service worker registration succeed !", registration);
+        })
+        .catch((e) => {
+          console.warn("service worker registration failed", e.message);
+        });
+    }
+  },[]);
+
   if (!stories.length) {
     return <Error statusCode={504} />;
   }
@@ -19,10 +33,10 @@ export default function Home({ stories, page }) {
   return (
     <Layout
       title="Hacker News Clone | New Links "
-      description="a hacker news clone made with made next js "
+      description="A hacker news clone made with made next js "
     >
       <StoryList stories={stories} />
-      <footer className="my-10 text-center inline-flex items-center space-x-3">
+      <footer className="my-10 text-center inline-flex items-center space-x-3 pl-4">
         {page !== 1 ? (
           <span
             className="px-2 py-2 bg-red-400 text-white rounded-lg text-sm font-bold cursor-pointer"

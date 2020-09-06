@@ -2,20 +2,23 @@
   "name": "hacker-news-clone",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@tailwindui/react": "^0.1.1",
     "autoprefixer": "^9.8.6",
     "axios": "^0.19.2",
+    "cross-env": "^7.0.2",
     "next": "9.5.2",
     "nprogress": "^0.2.0",
     "postcss-cli": "^7.1.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "sw-precache-webpack-plugin": "^1.0.0",
     "tailwindcss": "^1.6.2"
   }
 }
